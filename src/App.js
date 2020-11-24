@@ -1,24 +1,34 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import Home from "./components/pages/Home/Home";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
+import HomeEmpleado from "./components/pages/Empleado/HomeEmpleado";
+import HomeTecnico from "./components/pages/TecnicoExterno/HomeTecnico";
+import RegistrarLlamada from "./components/pages/Empleado/RegistrarLlamada";
+import VerReclamosPendientes from "./components/pages/TecnicoExterno/VerReclamosPendientes";
+import VerReclamosEnGestion from "./components/pages/TecnicoExterno/VerReclamosEnGestion";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <div className="App">
+        <Switch>
+          <Route path="/" component={Home} exact />
+          <Route path="/empleado" component={HomeEmpleado} exact />
+          <Route path="/empleado/llamada" component={RegistrarLlamada} exact />
+          <Route path="/tecnico" component={HomeTecnico} exact />
+          <Route
+            path="/tecnico/rependientes"
+            component={VerReclamosPendientes}
+            exact
+          />
+          <Route
+            path="/tecnico/regestion"
+            component={VerReclamosEnGestion}
+            exact
+          />
+        </Switch>
+      </div>
+    </BrowserRouter>
   );
 }
 
