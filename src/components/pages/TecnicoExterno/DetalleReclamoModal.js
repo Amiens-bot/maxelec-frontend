@@ -16,7 +16,7 @@ function DetalleReclamoModal({ reclamo }) {
         </button>
 
         <div class="modal" id={`modalDetalle-id${reclamo.reclamoID}`}>
-          <div class="modal-dialog">
+          <div class="modal-dialog modal-lg">
             <div class="modal-content">
               <div class="modal-header">
                 <h4 class="modal-title">
@@ -28,28 +28,57 @@ function DetalleReclamoModal({ reclamo }) {
               </div>
 
               <div class="modal-body">
-                <div class="card mb-1">
-                  <h5 class="card-header bg-dark text-white">Garantia?</h5>
-                  <div class="card-body">
-                    <p class="card-text">{reclamo.garantia}</p>
-                  </div>
-                </div>
-                <div class="card mb-1">
-                  <h5 class="card-header bg-dark text-white">
-                    Fecha del Reclamo
-                  </h5>
-                  <div class="card-body">
-                    <p class="card-text">{reclamo.fecha}</p>
-                  </div>
-                </div>
-                <div class="card mb-1">
-                  <h5 class="card-header bg-dark text-white">
-                    Nombre y Apellido
-                  </h5>
-                  <div class="card-body">
-                    <p class="card-text">{reclamo.nombre} Pepe</p>
-                  </div>
-                </div>
+                <h5>DATOS DEL PRODUCTO</h5>
+                <ul class="list-group mb-3">
+                  <li class="list-group-item">
+                    <b>Producto:</b> {reclamo.producto}
+                  </li>
+                  <li class="list-group-item">
+                    <b>Modelo:</b> {reclamo.modelo}
+                  </li>
+                  <li class="list-group-item">
+                    <b>Serie:</b> {reclamo.numeroSerieProducto}
+                  </li>
+                </ul>
+                <hr />
+                <h5>DATOS DEL CLIENTE</h5>
+                <ul class="list-group mb-3">
+                  <li class="list-group-item">
+                    <b>Cliente:</b> {reclamo.nombre} {reclamo.apellido}
+                  </li>
+                  <li class="list-group-item">
+                    <b>Telefono:</b> {reclamo.telefono}
+                  </li>
+                  <li class="list-group-item">
+                    <b>Direccion:</b> {reclamo.direccion}, {reclamo.ciudad}
+                  </li>
+                </ul>
+
+                <hr />
+                <h5>DATOS DE LA FACTURA</h5>
+                <ul class="list-group mb-3">
+                  <li class="list-group-item">
+                    <b>Casa Vendedora:</b> {reclamo.NombreCompania}
+                  </li>
+                  <li class="list-group-item">
+                    <b>CUIT:</b> {reclamo.CUITDistribuidor}
+                  </li>
+                  <li class="list-group-item">
+                    <b>Fecha de Compra:</b> {reclamo.fechaFacturaFinal}
+                  </li>
+                  <li class="list-group-item">
+                    <b>Nro Factura:</b> {reclamo.nroFactura}
+                  </li>
+                  <li class="list-group-item">
+                    <b>Garantia:</b> {reclamo.garantia}
+                  </li>
+                </ul>
+
+                <hr />
+                <h5>FALLA DECLARADA</h5>
+                <ul class="list-group mb-3">
+                  <li class="list-group-item">{reclamo.razonLlamada}</li>
+                </ul>
               </div>
 
               <div class="modal-footer">
