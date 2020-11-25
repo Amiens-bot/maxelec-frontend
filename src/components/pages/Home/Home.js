@@ -31,7 +31,12 @@ function Home() {
 
         <div className="buttonsHomediv">
           <div className="form-group">
-            <Button as={Link} to="/tecnico" className="btn btn-danger btn-lg">
+            <Button
+              as={Link}
+              to="/tecnico"
+              className="btn btn-danger btn-lg"
+              style={{ width: "134px" }}
+            >
               TECNICO
             </Button>
           </div>

@@ -16,15 +16,12 @@ const EditarReclamoModal = ({ reclamo }) => {
           class="btn btn-primary"
           data-toggle="modal"
           data-target={`#modalEditar-id${reclamo.reclamoID}`}
+          data-backdrop="static"
         >
           Editar
         </button>
 
-        <div
-          class="modal"
-          id={`modalEditar-id${reclamo.reclamoID}`}
-          onClick={() => setRazonLlamada(reclamo.razonLlamada)}
-        >
+        <div class="modal" id={`modalEditar-id${reclamo.reclamoID}`}>
           <div class="modal-dialog">
             <div class="modal-content">
               <div class="modal-header">

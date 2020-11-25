@@ -10,25 +10,82 @@ function VerReclamosEnGestion() {
   //#region Test Data
   const jsonData = [
     {
-      reclamoID: 9999,
-      DNI: 41443315,
-      nombre: "Pedro",
-      telefono: "3624647777",
-      fecha: "10/12/2020",
-      razonLlamada: "No se prende el anafe",
+      reclamoID: 1940,
+      razonLlamada:
+        "Do cupidatat minim anim minim voluptate ex anim occaecat. Sit esse elit laborum quis fugiat ut esse adipisicing reprehenderit est fugiat ipsum. Laborum reprehenderit est ipsum elit.\r\n",
+      DescripcionSolucion: "",
+      DescripcionEliminacion: "",
+      DescripcionRecivido: "",
+      TecnicoID: "",
+      TecnicoNombre: "",
+      fechaIngreso: "2020-04-17",
+      estado: "DERIVADOTE",
+      DNI: 41548052,
+      nombre: "Mcfadden",
+      apellido: "Swanson",
+      telefono: "(960) 478-2402",
+      direccion: "Ridge Boulevard 123",
+      ciudad: "Tioga",
       garantia: "Si",
-      lugarCompra: "Fravegas",
+      NombreCompania: "Fravegas",
+      CUITDistribuidor: "30-42428339-9",
+      nroFactura: 5229,
+      fechaFacturaFinal: "2020-05-21",
+      producto: "Termotanque",
+      modelo: "xm-400",
+      numeroSerieProducto: 516612,
     },
     {
-      reclamoID: 4269,
-      DNI: 40221518,
-      nombre: "Maxi",
-      telefono: "+1 (858) 498-2643",
-      fecha: "2017-10-10T10:08:10 +03:00",
+      reclamoID: 8067,
       razonLlamada:
-        "sdsdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasd",
+        "Deserunt commodo sint nulla ex elit dolore et. Cillum excepteur non mollit quis eiusmod ipsum. Eiusmod ea magna proident id duis consectetur duis sint. Deserunt ea nulla commodo ut aliqua nisi adipisicing cupidatat amet deserunt et.\r\n",
+      DescripcionSolucion: "",
+      DescripcionEliminacion: "",
+      DescripcionRecivido: "",
+      TecnicoID: "",
+      TecnicoNombre: "",
+      fechaIngreso: "2020-04-06",
+      estado: "DERIVADOTE",
+      DNI: 42079003,
+      nombre: "Darla",
+      apellido: "Mckay",
+      telefono: "(945) 494-3647",
+      direccion: "Cass Place 123",
+      ciudad: "Brownlee",
       garantia: "Si",
-      lugarCompra: "Fravegas",
+      NombreCompania: "Fravegas",
+      CUITDistribuidor: "30-44314386-9",
+      nroFactura: 1447,
+      fechaFacturaFinal: "2020-05-05",
+      producto: "Termotanque",
+      modelo: "xm-400",
+      numeroSerieProducto: 224180,
+    },
+    {
+      reclamoID: 8395,
+      razonLlamada:
+        "Duis anim cillum nisi id culpa aute. Amet commodo est magna nostrud anim. Id sit consectetur dolor duis laborum ullamco excepteur minim magna consectetur. Elit nulla laboris elit adipisicing labore eiusmod nostrud. Aliqua amet adipisicing duis est esse commodo. Labore tempor adipisicing labore velit eu.\r\n",
+      DescripcionSolucion: "",
+      DescripcionEliminacion: "",
+      DescripcionRecivido: "",
+      TecnicoID: "",
+      TecnicoNombre: "",
+      fechaIngreso: "2020-01-09",
+      estado: "DERIVADOTE",
+      DNI: 41652637,
+      nombre: "Knight",
+      apellido: "Dickerson",
+      telefono: "(918) 468-3656",
+      direccion: "Glenwood Road 123",
+      ciudad: "Nadine",
+      garantia: "Si",
+      NombreCompania: "Fravegas",
+      CUITDistribuidor: "30-45388173-9",
+      nroFactura: 2772,
+      fechaFacturaFinal: "2020-01-13",
+      producto: "Termotanque",
+      modelo: "xm-400",
+      numeroSerieProducto: 247652,
     },
   ];
 
@@ -78,7 +135,7 @@ function VerReclamosEnGestion() {
                   <td>{item.DNI}</td>
                   <td>{item.nombre}</td>
                   <td>{item.telefono}</td>
-                  <td>{item.fecha}</td>
+                  <td>{item.fechaIngreso}</td>
                   <td>
                     <DetalleReclamoModal reclamo={item} />
                   </td>
@@ -86,7 +143,7 @@ function VerReclamosEnGestion() {
                     <EditarReclamoModal reclamo={item} />
                   </td>
                   <td>
-                    <EliminarReclamoModal reclamo={item} />
+                    <EliminarReclamoModal reclamo={item} disabled={true} />
                   </td>
                   <td>
                     <FinalizarReclamoModal reclamo={item} />

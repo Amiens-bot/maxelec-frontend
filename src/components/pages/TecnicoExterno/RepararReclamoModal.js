@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 
 function RepararReclamoModal({ reclamo }) {
-  const [razonLlamada, setRazonLlamada] = useState(reclamo.razonLlamada);
+  const [descripcionRecivido, setDescripcionRecivido] = useState(
+    reclamo.DescripcionRecivido
+  );
 
   const repararReclamo = (e, id) => {
     e.preventDefault();
@@ -18,15 +20,12 @@ function RepararReclamoModal({ reclamo }) {
           class="btn btn-warning"
           data-toggle="modal"
           data-target={`#modalReparar-id${reclamo.reclamoID}`}
+          data-backdrop="static"
         >
           Reparar{/* <i class="fas fa-wrench"></i> */}
         </button>
 
-        <div
-          class="modal"
-          id={`modalReparar-id${reclamo.reclamoID}`}
-          onClick={() => setRazonLlamada(reclamo.razonLlamada)}
-        >
+        <div class="modal" id={`modalReparar-id${reclamo.reclamoID}`}>
           <div class="modal-dialog">
             <div class="modal-content">
               <div class="modal-header">
@@ -37,7 +36,9 @@ function RepararReclamoModal({ reclamo }) {
                   type="button"
                   class="close"
                   data-dismiss="modal"
-                  onClick={() => setRazonLlamada(reclamo.razonLlamada)}
+                  onClick={() =>
+                    setDescripcionRecivido(reclamo.DescripcionRecivido)
+                  }
                 >
                   &times;
                 </button>
@@ -67,8 +68,8 @@ function RepararReclamoModal({ reclamo }) {
                     id="inputEstadoProducto"
                     rows="5"
                     style={{ resize: "none" }}
-                    value={razonLlamada}
-                    onChange={(e) => setRazonLlamada(e.target.value)}
+                    value={descripcionRecivido}
+                    onChange={(e) => setDescripcionRecivido(e.target.value)}
                   ></textarea>
                 </div>
               </div>
@@ -86,7 +87,9 @@ function RepararReclamoModal({ reclamo }) {
                   type="button"
                   class="btn btn-primary"
                   data-dismiss="modal"
-                  onClick={() => setRazonLlamada(reclamo.razonLlamada)}
+                  onClick={() =>
+                    setDescripcionRecivido(reclamo.DescripcionRecivido)
+                  }
                 >
                   Cerrar
                 </button>

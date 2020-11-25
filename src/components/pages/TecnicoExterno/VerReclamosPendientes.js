@@ -159,7 +159,7 @@ function VerReclamosPendientes() {
                     <EditarReclamoModal reclamo={item} />
                   </td>
                   <td>
-                    <EliminarReclamoModal reclamo={item} />
+                    <EliminarReclamoModal reclamo={item} disabled={false} />
                   </td>
                   <td>
                     <RepararReclamoModal reclamo={item} />

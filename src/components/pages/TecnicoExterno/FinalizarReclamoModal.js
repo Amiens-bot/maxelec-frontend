@@ -18,15 +18,12 @@ function FinalizarReclamoModal({ reclamo }) {
           class="btn btn-success"
           data-toggle="modal"
           data-target={`#modalFinalizar-id${reclamo.reclamoID}`}
+          data-backdrop="static"
         >
           Finalizar
         </button>
 
-        <div
-          class="modal"
-          id={`modalFinalizar-id${reclamo.reclamoID}`}
-          onClick={() => setRazonLlamada(reclamo.razonLlamada)}
-        >
+        <div class="modal" id={`modalFinalizar-id${reclamo.reclamoID}`}>
           <div class="modal-dialog">
             <div class="modal-content">
               <div class="modal-header">

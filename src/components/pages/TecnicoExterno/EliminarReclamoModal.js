@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 
-function EliminarReclamoModal({ reclamo }) {
-  const [razonLlamada, setRazonLlamada] = useState(reclamo.razonLlamada);
+function EliminarReclamoModal({ reclamo, disabled }) {
+  const [descripcionEliminacion, setdescripcionEliminacion] = useState(
+    reclamo.DescripcionEliminacion
+  );
 
   const eliminarReclamo = (e, id) => {
     e.preventDefault();
@@ -19,15 +21,13 @@ function EliminarReclamoModal({ reclamo }) {
           class="btn btn-danger"
           data-toggle="modal"
           data-target={`#modalEliminar-id${reclamo.reclamoID}`}
+          disabled={disabled}
+          data-backdrop="static"
         >
           Eliminar
         </button>
 
-        <div
-          class="modal"
-          id={`modalEliminar-id${reclamo.reclamoID}`}
-          onClick={() => setRazonLlamada(reclamo.razonLlamada)}
-        >
+        <div class="modal" id={`modalEliminar-id${reclamo.reclamoID}`}>
           <div class="modal-dialog">
             <div class="modal-content">
               <div class="modal-header">
@@ -38,7 +38,9 @@ function EliminarReclamoModal({ reclamo }) {
                   type="button"
                   class="close"
                   data-dismiss="modal"
-                  onClick={() => setRazonLlamada(reclamo.razonLlamada)}
+                  onClick={() =>
+                    setdescripcionEliminacion(reclamo.DescripcionEliminacion)
+                  }
                 >
                   &times;
                 </button>
@@ -52,8 +54,8 @@ function EliminarReclamoModal({ reclamo }) {
                     id="inputRazonLlamada"
                     rows="5"
                     style={{ resize: "none" }}
-                    value={razonLlamada}
-                    onChange={(e) => setRazonLlamada(e.target.value)}
+                    value={descripcionEliminacion}
+                    onChange={(e) => setdescripcionEliminacion(e.target.value)}
                   ></textarea>
                 </div>
               </div>
@@ -71,7 +73,9 @@ function EliminarReclamoModal({ reclamo }) {
                   type="button"
                   class="btn btn-primary"
                   data-dismiss="modal"
-                  onClick={() => setRazonLlamada(reclamo.razonLlamada)}
+                  onClick={() =>
+                    setdescripcionEliminacion(reclamo.DescripcionEliminacion)
+                  }
                 >
                   Cerrar
                 </button>
