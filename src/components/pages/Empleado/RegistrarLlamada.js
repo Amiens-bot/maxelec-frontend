@@ -219,6 +219,18 @@ function RegistrarLlamada() {
       <form>
         <div className="form-group">
           <div className="form-row">
+            {/* INPUT - N° FACTURA */}
+            <div className="form-group col-md-1">
+              <label for="inputNfactura">N° Factura</label>
+              <input
+                type="number"
+                className="form-control"
+                id="inputNfactura"
+                value={facturaNumero}
+                onChange={(e) => setFacturaNumero(e.target.value)}
+              />
+            </div>
+
             {/* INPUT - N° de Serie */}
             <div className="form-group col-md-1">
               <label for="inputNserie">N° de Serie</label>
@@ -232,7 +244,7 @@ function RegistrarLlamada() {
             </div>
 
             {/* INPUT - Producto */}
-            <div className="form-group col-md-2">
+            <div className="form-group col-md-3">
               <label for="inputProducto">Producto</label>
               <input
                 type="text"
@@ -256,18 +268,6 @@ function RegistrarLlamada() {
               />
             </div>
 
-            {/* INPUT - N° FACTURA */}
-            <div className="form-group col-md-2">
-              <label for="inputNfactura">N° Factura</label>
-              <input
-                type="text"
-                className="form-control"
-                id="inputNfactura"
-                value={facturaNumero}
-                //onChange={(e) => setFacturaNumero(e.target.value)}
-                disabled
-              />
-            </div>
             {/* INPUT - Fecha */}
             <div className="form-group col-md-1">
               <label for="inputFechaFactura">Fecha</label>
