@@ -377,7 +377,7 @@ function RegistrarLlamada() {
                   Selecionar Ciudad
                 </option>
                 {items.map((item) => (
-                  <option key={item.ciudadid} value={item.ciudadid}>
+                  <option key={item.id} value={item.id}>
                     {item.nombre}
                   </option>
                 ))}
@@ -418,10 +418,7 @@ function RegistrarLlamada() {
                   Gestionando: 2
                 </option> */}
                 {tecnicoExternoData.map((item) => (
-                  <option
-                    key={item.empresatecnicoid}
-                    value={item.empresatecnicoid}
-                  >
+                  <option key={item.id} value={item.id}>
                     {item.nombre} - {item.direccion} - {item.Ciudad},{" "}
                     {item.provincia}
                   </option>
