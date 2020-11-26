@@ -163,11 +163,12 @@ function RegistrarLlamada() {
 
   // traer ciudades
   const onSelectedProvincia = (provinciaSelecionada) => {
-    console.log("Buscar ciudades con provincia: " + provinciaSelecionada);
+    setCiudad(""); // resetea los valores de ciudad, de esta manera no quedan resagado un estado.
     axios
-      .get("http://localhost:5000/ciudades")
+      .get(`http://localhost:5000/ciudades/${provinciaSelecionada}`)
       .then((res) => {
-        setItems(res.data);
+        //console.log(res.data.payload);
+        setItems(res.data.payload);
       })
       .catch((err) => {
         console.error(err);
@@ -323,10 +324,10 @@ function RegistrarLlamada() {
                 <option selected disabled value="">
                   Selecionar Provincia
                 </option>
-                <option value="CHACO">Chaco</option>
-                <option value="CORRIENTES">Corrientes</option>
-                <option value="FORMOSA">Formosa</option>
-                <option value="MISIONES">Misiones</option>
+                <option value="Chaco">Chaco</option>
+                <option value="Corrientes">Corrientes</option>
+                <option value="Formosa">Formosa</option>
+                <option value="Misiones">Misiones</option>
               </select>
             </div>
 
