@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+import moment from "moment";
 import MyNavbar from "../../Navbar/MyNavbar";
 import BackgroundImage from "../../../images/19089.jpg";
 
@@ -8,13 +9,17 @@ function RegistrarLlamada() {
   const [nombre, setNombre] = useState("");
   const [apellido, setApellido] = useState("");
   const [telefono, setTelefono] = useState("");
+
+  // checkear con bd por duplicado.
   const [DNI, setDNI] = useState("");
+
   const [razonLlamada, setRazonLlamada] = useState("");
   const [solucionLlamada, setSolucionLlamada] = useState("");
-  // const [noSolucionLlamada, setNoSolucionLlamada] = useState(null); // no se si vamos a registrar un formulario rechazado
   const [producto, setProducto] = useState("");
-  const [productoSerie, setProductoSerie] = useState("");
   const [lugarCompra, setLugarCompra] = useState("");
+
+  // check de la factura, garantia.
+  const [productoSerie, setProductoSerie] = useState("");
   const [facturaNumero, setFacturaNumero] = useState("");
 
   // ciudad-provincias
@@ -25,6 +30,7 @@ function RegistrarLlamada() {
   //otros
   const [direccion, setDireccion] = useState("");
   const [tecnicoExterno, setTecnicoExterno] = useState("");
+  const [tecnicoExternoData, setTecnicoExternoData] = useState([]);
   const [garantia, setGarantia] = useState("");
 
   // Opcionalidades
@@ -55,18 +61,24 @@ function RegistrarLlamada() {
 
   //#region -> OnSubmit Stuff
 
-  const onClickGarantia = async (e) => {
+  const onClickGarantia = (e) => {
     e.preventDefault();
-    console.log("nro producto serie a checkear y traer info: " + productoSerie);
-    if (productoSerie === "42") {
-      setGarantia("SI");
-    } else {
-      setGarantia("NO");
-    }
-    try {
-    } catch (err) {
-      console.error(err.message);
-    }
+    //console.log("nro producto serie a checkear y traer info: " + productoSerie);
+    //console.log(moment().format("DD-MM-YYYY"));
+    // axios
+    //   .get(`http://localhost:5000/facturacheck/`,{
+    //     params: {
+    //       productSerie: productoSerie,
+    //       facturaNumero: facturaNumero
+    //     }
+    //   })
+    //   .then((res) => {
+    //     //console.log(res.data.payload);
+    //     //setItems(res.data.payload);
+    //   })
+    //   .catch((err) => {
+    //     console.error(err);
+    //   });
   };
 
   const onSubmitRegistrar = async (e) => {
@@ -161,9 +173,11 @@ function RegistrarLlamada() {
   };
   //#endregion
 
-  // traer ciudades
+  //#region -> traer ciudades, y traer tecnicos.
   const onSelectedProvincia = (provinciaSelecionada) => {
     setCiudad(""); // resetea los valores de ciudad, de esta manera no quedan resagado un estado.
+    setTecnicoExterno("");
+
     axios
       .get(`http://localhost:5000/ciudades/${provinciaSelecionada}`)
       .then((res) => {
@@ -174,6 +188,22 @@ function RegistrarLlamada() {
         console.error(err);
       });
   };
+
+  const onSelectedCiudad = (ciudadSeleccionada) => {
+    //console.log(ciudadSeleccionada);
+    setTecnicoExterno("");
+    axios
+      .get(`http://localhost:5000/tecnicosexternos/${ciudadSeleccionada}`)
+      .then((res) => {
+        //console.log(res.data.payload);
+        setTecnicoExternoData(res.data.payload);
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  };
+
+  //#endregion
 
   //#region -> Conditional rendering - Boton Registrar
   let buttonRegistrar = false;
@@ -338,7 +368,10 @@ function RegistrarLlamada() {
                 id="inputCiudad"
                 className="form-control"
                 value={ciudad}
-                onChange={(e) => setCiudad(e.target.value)} // aqui voy a hacer lo mismo que con provincia, solo que voy a buscar los tecnicos externos con estas ciuidades.ID
+                onChange={(e) => {
+                  setCiudad(e.target.value);
+                  onSelectedCiudad(e.target.value);
+                }} // aqui voy a hacer lo mismo que con provincia, solo que voy a buscar los tecnicos externos con estas ciuidades.ID
               >
                 <option selected disabled value="">
                   Selecionar Ciudad
@@ -377,13 +410,22 @@ function RegistrarLlamada() {
                 <option selected disabled value="">
                   Selecionar Tecnico Externo
                 </option>
-                <option>
+                {/* <option>
                   Arreglo Mas - Av. pepe 123, Chaco, Saez Peña - Gestionando: 5
                 </option>
                 <option>
                   Hyper Arreglos - Av. los avalos, Chaco, Resistencia -
                   Gestionando: 2
-                </option>
+                </option> */}
+                {tecnicoExternoData.map((item) => (
+                  <option
+                    key={item.empresatecnicoid}
+                    value={item.empresatecnicoid}
+                  >
+                    {item.nombre} - {item.direccion} - {item.Ciudad},{" "}
+                    {item.provincia}
+                  </option>
+                ))}
               </select>
             </div>
           </div>
