@@ -16,8 +16,13 @@ function RegistrarLlamada() {
   const [productoSerie, setProductoSerie] = useState("");
   const [lugarCompra, setLugarCompra] = useState("");
   const [facturaNumero, setFacturaNumero] = useState("");
+
+  // ciudad-provincias
   const [provincia, setProvincia] = useState("");
   const [ciudad, setCiudad] = useState("");
+  const [items, setItems] = useState([]);
+
+  //otros
   const [direccion, setDireccion] = useState("");
   const [tecnicoExterno, setTecnicoExterno] = useState("");
   const [garantia, setGarantia] = useState("");
@@ -28,21 +33,6 @@ function RegistrarLlamada() {
   //#endregion
 
   //#region -> Test Data
-
-  const ciudades = [
-    {
-      id: 1,
-      nombre: "Resistencia",
-    },
-    {
-      id: 2,
-      nombre: "Saez Peña",
-    },
-    {
-      id: 3,
-      nombre: "Fontana",
-    },
-  ];
 
   const data = {
     nombre: nombre,
@@ -174,16 +164,14 @@ function RegistrarLlamada() {
   // traer ciudades
   const onSelectedProvincia = (provinciaSelecionada) => {
     console.log("Buscar ciudades con provincia: " + provinciaSelecionada);
-    // axios
-    //   .get("https://randomuser.me/api/?results=5")
-    //   .then((res) => {
-    //     console.log(res);
-    //     console.log(res.data.results[1].id.value);
-    //     return res;
-    //   })
-    //   .catch((err) => {
-    //     console.error(err);
-    //   });
+    axios
+      .get("http://localhost:5000/ciudades")
+      .then((res) => {
+        setItems(res.data);
+      })
+      .catch((err) => {
+        console.error(err);
+      });
   };
 
   //#region -> Conditional rendering - Boton Registrar
@@ -354,8 +342,8 @@ function RegistrarLlamada() {
                 <option selected disabled value="">
                   Selecionar Ciudad
                 </option>
-                {ciudades.map((item) => (
-                  <option key={item.id} value={item.id}>
+                {items.map((item) => (
+                  <option key={item.ciudadid} value={item.ciudadid}>
                     {item.nombre}
                   </option>
                 ))}
