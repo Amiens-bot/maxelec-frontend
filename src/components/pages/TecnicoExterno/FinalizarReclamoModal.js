@@ -15,7 +15,7 @@ function FinalizarReclamoModal({ reclamo }) {
       <div className="text-dark">
         <button
           type="button"
-          class="btn btn-success"
+          className="btn btn-success"
           data-toggle="modal"
           data-target={`#modalFinalizar-id${reclamo.reclamoID}`}
           data-backdrop="static"
@@ -23,16 +23,16 @@ function FinalizarReclamoModal({ reclamo }) {
           Finalizar
         </button>
 
-        <div class="modal" id={`modalFinalizar-id${reclamo.reclamoID}`}>
-          <div class="modal-dialog">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h4 class="modal-title">
+        <div className="modal" id={`modalFinalizar-id${reclamo.reclamoID}`}>
+          <div className="modal-dialog">
+            <div className="modal-content">
+              <div className="modal-header">
+                <h4 className="modal-title">
                   Finalizar Reclamo - {reclamo.reclamoID}
                 </h4>
                 <button
                   type="button"
-                  class="close"
+                  className="close"
                   data-dismiss="modal"
                   onClick={() => setRazonLlamada(reclamo.razonLlamada)}
                 >
@@ -40,9 +40,9 @@ function FinalizarReclamoModal({ reclamo }) {
                 </button>
               </div>
 
-              <div class="modal-body">
+              <div className="modal-body">
                 <div className="form-group">
-                  <label for="inputTecnico">Codigo de Tecnico</label>
+                  <label htmlFor="inputTecnico">Codigo de Tecnico</label>
                   <input
                     type="text"
                     className="form-control"
@@ -51,12 +51,12 @@ function FinalizarReclamoModal({ reclamo }) {
                     value={6969}
                   />
                 </div>
-                <div class="form-group">
-                  <label for="inputEstadoProducto">
+                <div className="form-group">
+                  <label htmlFor="inputEstadoProducto">
                     Detalle de Reparaciones Realizadas
                   </label>
                   <textarea
-                    class="form-control"
+                    className="form-control"
                     id="inputEstadoProducto"
                     rows="5"
                     style={{ resize: "none" }}
@@ -66,10 +66,10 @@ function FinalizarReclamoModal({ reclamo }) {
                 </div>
               </div>
 
-              <div class="modal-footer">
+              <div className="modal-footer">
                 <button
                   type="button"
-                  class="btn btn-success"
+                  className="btn btn-success"
                   data-dismiss="modal"
                   onClick={(e) => repararReclamo(e, reclamo.reclamoID)}
                 >
@@ -77,7 +77,7 @@ function FinalizarReclamoModal({ reclamo }) {
                 </button>
                 <button
                   type="button"
-                  class="btn btn-primary"
+                  className="btn btn-primary"
                   data-dismiss="modal"
                   onClick={() => setRazonLlamada(reclamo.razonLlamada)}
                 >

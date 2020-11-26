@@ -7,13 +7,23 @@ function MyNavbar(props) {
   const homeLinkList = props.homeLink;
 
   const allLinks = navlinkslist.map((item) => (
-    <Nav.Link as={NavLink} className="d-inline p-2 " to={item.to}>
+    <Nav.Link
+      as={NavLink}
+      className="d-inline p-2 "
+      key={item.lnombre} // para que me saque el warning pedorro que tira de key
+      to={item.to}
+    >
       {item.lnombre}
     </Nav.Link>
   ));
 
   const homeLink = homeLinkList.map((item) => (
-    <Nav.Link as={NavLink} className="d-inline p-2 text-white" to={item.to}>
+    <Nav.Link
+      as={NavLink}
+      className="d-inline p-2 text-white"
+      key={item.tipo} // para que me saque el warning pedorro que tira de key
+      to={item.to}
+    >
       {item.tipo}
     </Nav.Link>
   ));

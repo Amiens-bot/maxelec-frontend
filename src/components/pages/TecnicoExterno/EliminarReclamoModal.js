@@ -18,7 +18,7 @@ function EliminarReclamoModal({ reclamo, disabled }) {
       <div className="text-dark">
         <button
           type="button"
-          class="btn btn-danger"
+          className="btn btn-danger"
           data-toggle="modal"
           data-target={`#modalEliminar-id${reclamo.reclamoID}`}
           disabled={disabled}
@@ -27,16 +27,16 @@ function EliminarReclamoModal({ reclamo, disabled }) {
           Eliminar
         </button>
 
-        <div class="modal" id={`modalEliminar-id${reclamo.reclamoID}`}>
-          <div class="modal-dialog">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h4 class="modal-title">
+        <div className="modal" id={`modalEliminar-id${reclamo.reclamoID}`}>
+          <div className="modal-dialog">
+            <div className="modal-content">
+              <div className="modal-header">
+                <h4 className="modal-title">
                   Eliminar Reclamo - {reclamo.reclamoID}
                 </h4>
                 <button
                   type="button"
-                  class="close"
+                  className="close"
                   data-dismiss="modal"
                   onClick={() =>
                     setdescripcionEliminacion(reclamo.DescripcionEliminacion)
@@ -46,11 +46,13 @@ function EliminarReclamoModal({ reclamo, disabled }) {
                 </button>
               </div>
 
-              <div class="modal-body">
-                <div class="form-group">
-                  <label for="inputRazonLlamada">Razon de eliminacion</label>
+              <div className="modal-body">
+                <div className="form-group">
+                  <label htmlFor="inputRazonLlamada">
+                    Razon de eliminacion
+                  </label>
                   <textarea
-                    class="form-control"
+                    className="form-control"
                     id="inputRazonLlamada"
                     rows="5"
                     style={{ resize: "none" }}
@@ -60,10 +62,10 @@ function EliminarReclamoModal({ reclamo, disabled }) {
                 </div>
               </div>
 
-              <div class="modal-footer">
+              <div className="modal-footer">
                 <button
                   type="button"
-                  class="btn btn-danger"
+                  className="btn btn-danger"
                   data-dismiss="modal"
                   onClick={(e) => eliminarReclamo(e, reclamo.reclamoID)}
                 >
@@ -71,7 +73,7 @@ function EliminarReclamoModal({ reclamo, disabled }) {
                 </button>
                 <button
                   type="button"
-                  class="btn btn-primary"
+                  className="btn btn-primary"
                   data-dismiss="modal"
                   onClick={() =>
                     setdescripcionEliminacion(reclamo.DescripcionEliminacion)

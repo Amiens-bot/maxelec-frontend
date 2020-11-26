@@ -222,7 +222,7 @@ function RegistrarLlamada() {
     formSolucionado = (
       //INPUT - Solucion
       <div className="form-group">
-        <label for="inputSolucionLlamada">Solucion</label>
+        <label htmlFor="inputSolucionLlamada">Solucion</label>
         <textarea
           className="form-control"
           id="inputSolucionLlamada"
@@ -240,7 +240,7 @@ function RegistrarLlamada() {
           <div className="form-row">
             {/* INPUT - N° FACTURA */}
             <div className="form-group col-md-1">
-              <label for="inputNfactura">N° Factura</label>
+              <label htmlFor="inputNfactura">N° Factura</label>
               <input
                 type="number"
                 className="form-control"
@@ -252,10 +252,10 @@ function RegistrarLlamada() {
 
             {/* INPUT - N° de Serie */}
             <div className="form-group col-md-1">
-              <label for="inputNserie">N° de Serie</label>
+              <label htmlFor="inputNserie">N° de Serie</label>
               <input
                 type="text"
-                class="form-control"
+                className="form-control"
                 id="inputNserie"
                 value={productoSerie}
                 onChange={(e) => setProductoSerie(e.target.value)}
@@ -264,10 +264,10 @@ function RegistrarLlamada() {
 
             {/* INPUT - Producto */}
             <div className="form-group col-md-3">
-              <label for="inputProducto">Producto</label>
+              <label htmlFor="inputProducto">Producto</label>
               <input
                 type="text"
-                class="form-control"
+                className="form-control"
                 id="inputProducto"
                 value={producto}
                 //onChange={(e) => setProductoSerie(e.target.value)}
@@ -277,10 +277,10 @@ function RegistrarLlamada() {
 
             {/* INPUT - Lugar de compra*/}
             <div className="form-group col-md-3">
-              <label for="inputLugarCompra">Lugar de Compra</label>
+              <label htmlFor="inputLugarCompra">Lugar de Compra</label>
               <input
                 type="text"
-                class="form-control"
+                className="form-control"
                 id="inputLugarCompra"
                 value={lugarCompra}
                 disabled
@@ -289,7 +289,7 @@ function RegistrarLlamada() {
 
             {/* INPUT - Fecha */}
             <div className="form-group col-md-1">
-              <label for="inputFechaFactura">Fecha</label>
+              <label htmlFor="inputFechaFactura">Fecha</label>
               <input
                 type="text"
                 className="form-control"
@@ -302,7 +302,7 @@ function RegistrarLlamada() {
 
             {/* INPUT - Dni Factura */}
             <div className="form-group col-md-1">
-              <label for="inputDNIFACTURA">DNI-FACTURA</label>
+              <label htmlFor="inputDNIFACTURA">DNI-FACTURA</label>
               <input
                 type="text"
                 className="form-control"
@@ -315,7 +315,7 @@ function RegistrarLlamada() {
 
             {/* GARANTIA? */}
             <div className="form-group col-md-1">
-              <label for="inputGarantia">Garantia?</label>
+              <label htmlFor="inputGarantia">Garantia?</label>
               <input
                 type="text"
                 className="form-control"
@@ -341,7 +341,7 @@ function RegistrarLlamada() {
           <div className="form-row">
             {/* INPUT - Provinicia */}
             <div className="form-group col-md-3">
-              <label for="inputProvincia">Provincia</label>
+              <label htmlFor="inputProvincia">Provincia</label>
               <select
                 id="inputProvincia"
                 className="form-control"
@@ -363,7 +363,7 @@ function RegistrarLlamada() {
 
             {/* INPUT - Ciudad */}
             <div className="form-group col-md-3">
-              <label for="inputCiudad">Ciudad</label>
+              <label htmlFor="inputCiudad">Ciudad</label>
               <select
                 id="inputCiudad"
                 className="form-control"
@@ -386,10 +386,10 @@ function RegistrarLlamada() {
 
             {/* INPUT - Direccion */}
             <div className="form-group col-md-6">
-              <label for="inputDireccion">Direccion</label>
+              <label htmlFor="inputDireccion">Direccion</label>
               <input
                 type="text"
-                class="form-control"
+                className="form-control"
                 id="inputDireccion"
                 value={direccion}
                 onChange={(e) => setDireccion(e.target.value)}
@@ -400,7 +400,7 @@ function RegistrarLlamada() {
           <div className="form-row">
             {/* INPUT - TECNICO EXTERNO */}
             <div className="form-group col-md-6">
-              <label for="inputTE">Designar a Tecnico Externo</label>
+              <label htmlFor="inputTE">Designar a Tecnico Externo</label>
               <select
                 id="inputTE"
                 className="form-control"
@@ -462,7 +462,7 @@ function RegistrarLlamada() {
           {/* INPUT - Nombre */}
           <div className="form-row">
             <div className="form-group col-md-6">
-              <label for="inputNombre">Nombre</label>
+              <label htmlFor="inputNombre">Nombre</label>
               <input
                 type="text"
                 className="form-control"
@@ -475,7 +475,7 @@ function RegistrarLlamada() {
 
             {/* INPUT - Apellido */}
             <div className="form-group col-md-6">
-              <label for="inputApellido">Apellido</label>
+              <label htmlFor="inputApellido">Apellido</label>
               <input
                 type="text"
                 className="form-control"
@@ -490,7 +490,7 @@ function RegistrarLlamada() {
           {/* INPUT - Telefono */}
           <div className="form-row">
             <div className="form-group col-md-6">
-              <label for="inputTelefono">Telefono</label>
+              <label htmlFor="inputTelefono">Telefono</label>
               <input
                 type="number"
                 className="form-control"
@@ -503,7 +503,7 @@ function RegistrarLlamada() {
 
             {/* INPUT - DNI */}
             <div className="form-group col-md-6">
-              <label for="inputDNI">DNI</label>
+              <label htmlFor="inputDNI">DNI</label>
               <input
                 type="number"
                 className="form-control"
@@ -516,10 +516,10 @@ function RegistrarLlamada() {
           </div>
 
           {/* INPUT - Razon Llamada */}
-          <div class="form-group">
-            <label for="inputRazonLlamada">Razon de la llamada</label>
+          <div className="form-group">
+            <label htmlFor="inputRazonLlamada">Razon de la llamada</label>
             <textarea
-              class="form-control"
+              className="form-control"
               id="inputRazonLlamada"
               rows="5"
               style={{ resize: "none" }}
@@ -544,19 +544,19 @@ function RegistrarLlamada() {
           {/* Opcionalidades - RADIO BUTTONS*/}
           <form className="form-check form-check-inline ml-4">
             <input
-              class="form-check-input "
+              className="form-check-input "
               type="radio"
               id="radioSolucionado"
               value="SOLUCIONADO"
               checked={opcionForm === "SOLUCIONADO"}
               onChange={(e) => setOpcionForm(e.target.value)}
             />
-            <label className="form-check-label mr-2" for="radioSolucionado">
+            <label className="form-check-label mr-2" htmlFor="radioSolucionado">
               Solucionado
             </label>
 
             <input
-              class="form-check-input "
+              className="form-check-input "
               type="radio"
               value="RECLAMO"
               id="radioReclamo"
@@ -564,7 +564,7 @@ function RegistrarLlamada() {
               onChange={(e) => setOpcionForm(e.target.value)}
               onClick={() => setSolucionLlamada(null)} // borra lo que esta en solucion. no hace falta capas
             />
-            <label className="form-check-label mr-2" for="radioReclamo">
+            <label className="form-check-label mr-2" htmlFor="radioReclamo">
               Derivar Reclamo
             </label>
 

@@ -17,24 +17,24 @@ function RepararReclamoModal({ reclamo }) {
       <div className="text-dark">
         <button
           type="button"
-          class="btn btn-warning"
+          className="btn btn-warning"
           data-toggle="modal"
           data-target={`#modalReparar-id${reclamo.reclamoID}`}
           data-backdrop="static"
         >
-          Reparar{/* <i class="fas fa-wrench"></i> */}
+          Reparar{/* <i className="fas fa-wrench"></i> */}
         </button>
 
-        <div class="modal" id={`modalReparar-id${reclamo.reclamoID}`}>
-          <div class="modal-dialog">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h4 class="modal-title">
+        <div className="modal" id={`modalReparar-id${reclamo.reclamoID}`}>
+          <div className="modal-dialog">
+            <div className="modal-content">
+              <div className="modal-header">
+                <h4 className="modal-title">
                   Reparar Reclamo - {reclamo.reclamoID}
                 </h4>
                 <button
                   type="button"
-                  class="close"
+                  className="close"
                   data-dismiss="modal"
                   onClick={() =>
                     setDescripcionRecivido(reclamo.DescripcionRecivido)
@@ -44,9 +44,9 @@ function RepararReclamoModal({ reclamo }) {
                 </button>
               </div>
 
-              <div class="modal-body">
+              <div className="modal-body">
                 <div className="form-group">
-                  <label for="inputTecnico">Codigo de Técnico</label>
+                  <label htmlFor="inputTecnico">Codigo de Técnico</label>
                   <select
                     id="inputTecnico"
                     className="form-control"
@@ -59,12 +59,12 @@ function RepararReclamoModal({ reclamo }) {
                     <option>6969</option>
                   </select>
                 </div>
-                <div class="form-group">
-                  <label for="inputEstadoProducto">
+                <div className="form-group">
+                  <label htmlFor="inputEstadoProducto">
                     Estado del Producto Pre-Service
                   </label>
                   <textarea
-                    class="form-control"
+                    className="form-control"
                     id="inputEstadoProducto"
                     rows="5"
                     style={{ resize: "none" }}
@@ -74,10 +74,10 @@ function RepararReclamoModal({ reclamo }) {
                 </div>
               </div>
 
-              <div class="modal-footer">
+              <div className="modal-footer">
                 <button
                   type="button"
-                  class="btn btn-warning"
+                  className="btn btn-warning"
                   data-dismiss="modal"
                   onClick={(e) => repararReclamo(e, reclamo.reclamoID)}
                 >
@@ -85,7 +85,7 @@ function RepararReclamoModal({ reclamo }) {
                 </button>
                 <button
                   type="button"
-                  class="btn btn-primary"
+                  className="btn btn-primary"
                   data-dismiss="modal"
                   onClick={() =>
                     setDescripcionRecivido(reclamo.DescripcionRecivido)

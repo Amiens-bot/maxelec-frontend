@@ -13,7 +13,7 @@ const EditarReclamoModal = ({ reclamo }) => {
       <div className="text-dark">
         <button
           type="button"
-          class="btn btn-primary"
+          className="btn btn-primary"
           data-toggle="modal"
           data-target={`#modalEditar-id${reclamo.reclamoID}`}
           data-backdrop="static"
@@ -21,14 +21,14 @@ const EditarReclamoModal = ({ reclamo }) => {
           Editar
         </button>
 
-        <div class="modal" id={`modalEditar-id${reclamo.reclamoID}`}>
-          <div class="modal-dialog">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h4 class="modal-title">Editar Reclamo</h4>
+        <div className="modal" id={`modalEditar-id${reclamo.reclamoID}`}>
+          <div className="modal-dialog">
+            <div className="modal-content">
+              <div className="modal-header">
+                <h4 className="modal-title">Editar Reclamo</h4>
                 <button
                   type="button"
-                  class="close"
+                  className="close"
                   data-dismiss="modal"
                   onClick={() => setRazonLlamada(reclamo.razonLlamada)}
                 >
@@ -36,13 +36,13 @@ const EditarReclamoModal = ({ reclamo }) => {
                 </button>
               </div>
 
-              <div class="modal-body">
-                <div class="form-group">
-                  <label for="inputRazonLlamada">
+              <div className="modal-body">
+                <div className="form-group">
+                  <label htmlFor="inputRazonLlamada">
                     Editar Razon de la llamada
                   </label>
                   <textarea
-                    class="form-control"
+                    className="form-control"
                     id="inputRazonLlamada"
                     rows="5"
                     style={{ resize: "none" }}
@@ -52,10 +52,10 @@ const EditarReclamoModal = ({ reclamo }) => {
                 </div>
               </div>
 
-              <div class="modal-footer">
+              <div className="modal-footer">
                 <button
                   type="button"
-                  class="btn btn-primary"
+                  className="btn btn-primary"
                   data-dismiss="modal"
                   onClick={(e) => updateRazonLlamada(e)}
                 >
@@ -63,7 +63,7 @@ const EditarReclamoModal = ({ reclamo }) => {
                 </button>
                 <button
                   type="button"
-                  class="btn btn-primary"
+                  className="btn btn-primary"
                   data-dismiss="modal"
                   onClick={() => setRazonLlamada(reclamo.razonLlamada)}
                 >

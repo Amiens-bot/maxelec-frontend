@@ -114,7 +114,7 @@ function VerReclamosEnGestion() {
         style={{ boxShadow: "inset 0 0 25px #000000" }}
       >
         <table className="table-responsive">
-          <table class="table text-white">
+          <table className="table text-white">
             <thead>
               <tr>
                 <th>N° Reclamo</th>
