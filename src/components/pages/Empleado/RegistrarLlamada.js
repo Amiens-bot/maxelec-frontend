@@ -124,7 +124,7 @@ function RegistrarLlamada() {
         };
         //console.log(data);
         axios
-          .post(`http://localhost:3001/api/reclamos/derivados`, data)
+          .post(`http://localhost:3001/api/reclamos/solucionados`, data)
           .then((res) => {
             console.log(res);
           })
@@ -180,14 +180,14 @@ function RegistrarLlamada() {
           },
         };
 
-        // axios
-        // .post(`http://localhost:3001/api/reclamos/derivados`, data)
-        // .then((res) => {
-        //   console.log(res);
-        // })
-        // .catch((err) => {
-        //   console.error(err);
-        // });
+        axios
+          .post(`http://localhost:3001/api/reclamos/derivados`, data1)
+          .then((res) => {
+            console.log(res);
+          })
+          .catch((err) => {
+            console.error(err);
+          });
 
         //console.log(data);
         setNombre("");

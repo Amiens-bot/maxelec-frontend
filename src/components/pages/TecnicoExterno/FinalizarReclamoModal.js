@@ -19,7 +19,7 @@ function FinalizarReclamoModal({ reclamo }) {
       });
 
     // acutaliza la pantalla
-    window.location = "/tecnico/rependientes";
+    window.location = "/tecnico/regestion";
   };
   return (
     <div>
