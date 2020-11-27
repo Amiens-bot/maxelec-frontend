@@ -1,9 +1,7 @@
 import React, { useState } from "react";
 
 function RepararReclamoModal({ reclamo }) {
-  const [descripcionRecivido, setDescripcionRecivido] = useState(
-    reclamo.DescripcionRecivido
-  );
+  const [descripcionRecivido, setDescripcionRecivido] = useState("");
 
   const repararReclamo = (e, id) => {
     e.preventDefault();
@@ -19,26 +17,24 @@ function RepararReclamoModal({ reclamo }) {
           type="button"
           className="btn btn-warning"
           data-toggle="modal"
-          data-target={`#modalReparar-id${reclamo.reclamoID}`}
+          data-target={`#modalReparar-id${reclamo.ticket_id}`}
           data-backdrop="static"
         >
           Reparar{/* <i className="fas fa-wrench"></i> */}
         </button>
 
-        <div className="modal" id={`modalReparar-id${reclamo.reclamoID}`}>
+        <div className="modal" id={`modalReparar-id${reclamo.ticket_id}`}>
           <div className="modal-dialog">
             <div className="modal-content">
               <div className="modal-header">
                 <h4 className="modal-title">
-                  Reparar Reclamo - {reclamo.reclamoID}
+                  Reparar Reclamo - {reclamo.ticket_id}
                 </h4>
                 <button
                   type="button"
                   className="close"
                   data-dismiss="modal"
-                  onClick={() =>
-                    setDescripcionRecivido(reclamo.DescripcionRecivido)
-                  }
+                  onClick={() => setDescripcionRecivido("")}
                 >
                   &times;
                 </button>
@@ -79,7 +75,7 @@ function RepararReclamoModal({ reclamo }) {
                   type="button"
                   className="btn btn-warning"
                   data-dismiss="modal"
-                  onClick={(e) => repararReclamo(e, reclamo.reclamoID)}
+                  onClick={(e) => repararReclamo(e, reclamo.ticket_id)}
                 >
                   Reparar
                 </button>
@@ -87,9 +83,7 @@ function RepararReclamoModal({ reclamo }) {
                   type="button"
                   className="btn btn-primary"
                   data-dismiss="modal"
-                  onClick={() =>
-                    setDescripcionRecivido(reclamo.DescripcionRecivido)
-                  }
+                  onClick={() => setDescripcionRecivido("")}
                 >
                   Cerrar
                 </button>

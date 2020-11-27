@@ -15,12 +15,13 @@ function RegistrarLlamada() {
 
   const [razonLlamada, setRazonLlamada] = useState("");
   const [solucionLlamada, setSolucionLlamada] = useState("");
-  const [producto, setProducto] = useState("");
-  const [lugarCompra, setLugarCompra] = useState("");
 
   // check de la factura, garantia.
   const [productoSerie, setProductoSerie] = useState("");
   const [facturaNumero, setFacturaNumero] = useState("");
+  const [producto, setProducto] = useState("");
+  const [lugarCompra, setLugarCompra] = useState("");
+  const [clientOverview, setClientOverview] = useState([]);
 
   // ciudad-provincias
   const [provincia, setProvincia] = useState("");
@@ -63,22 +64,24 @@ function RegistrarLlamada() {
 
   const onClickGarantia = (e) => {
     e.preventDefault();
-    //console.log("nro producto serie a checkear y traer info: " + productoSerie);
-    //console.log(moment().format("DD-MM-YYYY"));
-    // axios
-    //   .get(`http://localhost:5000/facturacheck/`,{
-    //     params: {
-    //       productSerie: productoSerie,
-    //       facturaNumero: facturaNumero
-    //     }
-    //   })
-    //   .then((res) => {
-    //     //console.log(res.data.payload);
-    //     //setItems(res.data.payload);
-    //   })
-    //   .catch((err) => {
-    //     console.error(err);
-    //   });
+    // console.log("nro producto serie a checkear y traer info: " + productoSerie);
+    // console.log(moment().format("DD-MM-YYYY"));
+    axios
+      .get(
+        `http://localhost:3001/api/reclamos/clienteoverview?numero_serie=${productoSerie}&numero_factura=${facturaNumero}`
+      )
+      .then((res) => {
+        console.log(res.data.payload[0]);
+
+        // 000003 210
+        setProducto(res.data.payload[0].nombre_producto);
+        setLugarCompra(res.data.payload[0].negocio_nombre);
+        //setClientOverview(res.data.payload[0]);
+        //console.log("cliente" + clientOverview);
+      })
+      .catch((err) => {
+        console.error(err);
+      });
   };
 
   const onSubmitRegistrar = async (e) => {
@@ -179,7 +182,7 @@ function RegistrarLlamada() {
     setTecnicoExterno("");
 
     axios
-      .get(`http://localhost:5000/ciudades/${provinciaSelecionada}`)
+      .get(`http://localhost:3001/api/ciudades/${provinciaSelecionada}`)
       .then((res) => {
         //console.log(res.data.payload);
         setItems(res.data.payload);
@@ -193,7 +196,7 @@ function RegistrarLlamada() {
     //console.log(ciudadSeleccionada);
     setTecnicoExterno("");
     axios
-      .get(`http://localhost:5000/tecnicosexternos/${ciudadSeleccionada}`)
+      .get(`http://localhost:3001/api/tecnicosexternos/${ciudadSeleccionada}`)
       .then((res) => {
         //console.log(res.data.payload);
         setTecnicoExternoData(res.data.payload);
