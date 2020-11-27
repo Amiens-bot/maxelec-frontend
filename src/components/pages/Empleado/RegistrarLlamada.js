@@ -21,6 +21,8 @@ function RegistrarLlamada() {
   const [facturaNumero, setFacturaNumero] = useState("");
   const [producto, setProducto] = useState("");
   const [lugarCompra, setLugarCompra] = useState("");
+  const [facturaFinalFecha, setFacturaFinalFecha] = useState("");
+
   const [clientOverview, setClientOverview] = useState([]);
 
   // ciudad-provincias
@@ -64,8 +66,6 @@ function RegistrarLlamada() {
 
   const onClickGarantia = (e) => {
     e.preventDefault();
-    // console.log("nro producto serie a checkear y traer info: " + productoSerie);
-    // console.log(moment().format("DD-MM-YYYY"));
     axios
       .get(
         `http://localhost:3001/api/reclamos/clienteoverview?numero_serie=${productoSerie}&numero_factura=${facturaNumero}`
@@ -73,9 +73,16 @@ function RegistrarLlamada() {
       .then((res) => {
         console.log(res.data.payload[0]);
 
-        // 000003 210
+        // 210 000003
+        // 410 000007
         setProducto(res.data.payload[0].nombre_producto);
         setLugarCompra(res.data.payload[0].negocio_nombre);
+        setFacturaFinalFecha(
+          moment(res.data.payload[0].fecha_expedicion).format("DD-MM-YYYY")
+        );
+        setGarantia(
+          res.data.payload[0].garantiaexpirada === true ? "No" : "Si"
+        );
         //setClientOverview(res.data.payload[0]);
         //console.log("cliente" + clientOverview);
       })
@@ -84,94 +91,105 @@ function RegistrarLlamada() {
       });
   };
 
-  const onSubmitRegistrar = async (e) => {
+  const onSubmitRegistrar = (e) => {
     e.preventDefault();
-    try {
-      // reclamo Solucionado
-      if (opcionForm === "SOLUCIONADO") {
-        if (
-          nombre === "" ||
-          apellido === "" ||
-          telefono === "" ||
-          DNI === "" ||
-          razonLlamada === "" ||
-          solucionLlamada === ""
-        ) {
-          window.alert("Datos incompletos");
-        } else {
-          const data = {
-            DNI,
-            razonLlamada,
-            solucionLlamada,
-            // fecha,
-            estado: "SOLUCIONADO",
-            // DNI_Empleado, Este es el DNI del Empleado que toma la llamada, va a ser uno por default por que no tenemos Login
-          };
-          console.log(
-            "Datos completos, mandar datos al backend de reclamo estado SOLUCIONADO"
-          );
-          console.log(data);
-          setNombre("");
-          setApellido("");
-          setTelefono("");
-          setDNI("");
-          setRazonLlamada("");
-          setSolucionLlamada("");
-        }
-      }
 
-      // Reclamo Derviado
-      if (opcionForm === "RECLAMO") {
-        if (
-          nombre === "" ||
-          apellido === "" ||
-          telefono === "" ||
-          DNI === "" ||
-          razonLlamada === "" ||
-          producto === "" ||
-          productoSerie === "" ||
-          lugarCompra === "" ||
-          facturaNumero === "" ||
-          provincia === "" ||
-          ciudad === "" ||
-          direccion === "" ||
-          tecnicoExterno === ""
-        ) {
-          window.alert("Datos incompletos");
-        } else {
-          const data = {
-            DNI,
-            razonLlamada,
-            // fecha, genera fecha de derivacion
-            estado: "PENDIENTE",
-            // DNI_Empleado, Este es el DNI del Empleado que toma la llamada, va a ser uno por default por que no tenemos Login
-            productoSerie,
-            // CUIT, Este es el cuit del Empresa_Tecnico
-          };
-          console.log(
-            "Datos completos, mandar datos al backend de reclamo estado SOLUCIONADO"
-          );
-          console.log(data);
-          setNombre("");
-          setApellido("");
-          setTelefono("");
-          setDNI("");
-          setRazonLlamada("");
-          setProducto("");
-          setProductoSerie("");
-          setLugarCompra("");
-          setFacturaNumero("");
-          setProvincia("");
-          setCiudad("");
-          setDireccion("");
-          setTecnicoExterno("");
-          window.alert("Reclamo generado -> ID: 1234");
-        }
-      }
+    // reclamo Solucionado
+    if (opcionForm === "SOLUCIONADO") {
+      if (
+        nombre === "" ||
+        apellido === "" ||
+        telefono === "" ||
+        DNI === "" ||
+        razonLlamada === "" ||
+        solucionLlamada === ""
+      ) {
+        window.alert("Datos incompletos");
+      } else {
+        const data = {
+          persona: {
+            dni: DNI,
+            nombre: nombre,
+            apellido: apellido,
+            telefono: telefono,
+            direccion: null,
+          },
+          reclamo: {
+            razon: razonLlamada,
+            solucion: solucionLlamada,
+            fecha_ingreso: moment().format("YYYY-MM-DD"),
+            fecha_solucion: moment().format("YYYY-MM-DD"),
+            dni_empleado: 41499363,
+          },
+        };
 
-      console.log("RECLAMO");
-    } catch (err) {
-      console.error(err.message);
+        //console.log(data);
+        axios
+          .post(`http://localhost:3001/api/reclamos/derivados`, data)
+          .then((res) => {
+            console.log(res);
+          })
+          .catch((err) => {
+            console.error(err);
+          });
+
+        setNombre("");
+        setApellido("");
+        setTelefono("");
+        setDNI("");
+        setRazonLlamada("");
+        setSolucionLlamada("");
+        window.alert("Reclamo Solucionado!");
+      }
+    }
+
+    // Reclamo Derviado
+    if (opcionForm === "RECLAMO") {
+      if (
+        nombre === "" ||
+        apellido === "" ||
+        telefono === "" ||
+        DNI === "" ||
+        razonLlamada === "" ||
+        producto === "" ||
+        productoSerie === "" ||
+        lugarCompra === "" ||
+        facturaNumero === "" ||
+        provincia === "" ||
+        ciudad === "" ||
+        direccion === "" ||
+        tecnicoExterno === ""
+      ) {
+        window.alert("Datos incompletos");
+      } else {
+        const data = {
+          DNI,
+          razonLlamada,
+          // fecha, genera fecha de derivacion
+          estado: "PENDIENTE",
+          // DNI_Empleado, Este es el DNI del Empleado que toma la llamada, va a ser uno por default por que no tenemos Login
+          productoSerie,
+          // CUIT, Este es el cuit del Empresa_Tecnico
+        };
+        console.log(
+          "Datos completos, mandar datos al backend de reclamo estado SOLUCIONADO"
+        );
+        console.log(data);
+        setNombre("");
+        setApellido("");
+        setTelefono("");
+        setDNI("");
+        setRazonLlamada("");
+        setProducto("");
+        setProductoSerie("");
+        setLugarCompra("");
+        setFacturaNumero("");
+        setProvincia("");
+        setCiudad("");
+        setDireccion("");
+        setTecnicoExterno("");
+        window.alert("Reclamo generado!");
+      }
     }
   };
   //#endregion
@@ -273,13 +291,12 @@ function RegistrarLlamada() {
                 className="form-control"
                 id="inputProducto"
                 value={producto}
-                //onChange={(e) => setProductoSerie(e.target.value)}
                 disabled
               />
             </div>
 
             {/* INPUT - Lugar de compra*/}
-            <div className="form-group col-md-3">
+            <div className="form-group col-md-4">
               <label htmlFor="inputLugarCompra">Lugar de Compra</label>
               <input
                 type="text"
@@ -297,21 +314,7 @@ function RegistrarLlamada() {
                 type="text"
                 className="form-control"
                 id="inputFechaFactura"
-                //value={facturaNumero}
-                //onChange={(e) => setFacturaNumero(e.target.value)}
-                disabled
-              />
-            </div>
-
-            {/* INPUT - Dni Factura */}
-            <div className="form-group col-md-1">
-              <label htmlFor="inputDNIFACTURA">DNI-FACTURA</label>
-              <input
-                type="text"
-                className="form-control"
-                id="inputDNIFACTURA"
-                //value={facturaNumero}
-                //onChange={(e) => setFacturaNumero(e.target.value)}
+                value={facturaFinalFecha}
                 disabled
               />
             </div>
@@ -324,7 +327,6 @@ function RegistrarLlamada() {
                 className="form-control"
                 id="inputGarantia"
                 value={garantia}
-                //onChange={(e) => setFacturaNumero(e.target.value)}
                 disabled
               />
             </div>
@@ -413,17 +415,11 @@ function RegistrarLlamada() {
                 <option selected disabled value="">
                   Selecionar Tecnico Externo
                 </option>
-                {/* <option>
-                  Arreglo Mas - Av. pepe 123, Chaco, Saez Peña - Gestionando: 5
-                </option>
-                <option>
-                  Hyper Arreglos - Av. los avalos, Chaco, Resistencia -
-                  Gestionando: 2
-                </option> */}
+
                 {tecnicoExternoData.map((item) => (
                   <option key={item.id} value={item.id}>
                     {item.nombre} - {item.direccion} - {item.Ciudad},{" "}
-                    {item.provincia}
+                    {item.provincia} - Gestionando:
                   </option>
                 ))}
               </select>
@@ -574,7 +570,7 @@ function RegistrarLlamada() {
       </div>
 
       {/* Test de datos */}
-      <pre>{JSON.stringify(data, null, 2)}</pre>
+      {/* <pre>{JSON.stringify(data, null, 2)}</pre> */}
     </div>
   );
   //#endregion
