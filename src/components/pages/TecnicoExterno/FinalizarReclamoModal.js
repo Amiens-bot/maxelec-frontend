@@ -1,14 +1,25 @@
 import React, { useState } from "react";
+import axios from "axios";
 
 function FinalizarReclamoModal({ reclamo }) {
-  const [razonLlamada, setRazonLlamada] = useState(reclamo.razonLlamada);
+  const [descripcionSolucion, setDescripcionSolucion] = useState("");
 
-  const repararReclamo = (e, id) => {
-    e.preventDefault();
-    console.log(id);
+  const finalizarReclamo = (e) => {
+    //e.preventDefault();
+    axios
+      .post(
+        `http://localhost:3001/api/reclamos/finalizar?ticket_id=${reclamo.ticket_id}&descripcion_solucion=${descripcionSolucion}`
+      )
+      .then((res) => {
+        console.log(res.data.payload);
+        //setTecnicosExternos(res.data.payload);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
 
     // acutaliza la pantalla
-    //window.location = "/tecnico/rependientes";
+    window.location = "/tecnico/rependientes";
   };
   return (
     <div>
@@ -17,24 +28,24 @@ function FinalizarReclamoModal({ reclamo }) {
           type="button"
           className="btn btn-success"
           data-toggle="modal"
-          data-target={`#modalFinalizar-id${reclamo.reclamoID}`}
+          data-target={`#modalFinalizar-id${reclamo.ticket_id}`}
           data-backdrop="static"
         >
           Finalizar
         </button>
 
-        <div className="modal" id={`modalFinalizar-id${reclamo.reclamoID}`}>
+        <div className="modal" id={`modalFinalizar-id${reclamo.ticket_id}`}>
           <div className="modal-dialog">
             <div className="modal-content">
               <div className="modal-header">
                 <h4 className="modal-title">
-                  Finalizar Reclamo - {reclamo.reclamoID}
+                  Finalizar Reclamo - {reclamo.ticket_id}
                 </h4>
                 <button
                   type="button"
                   className="close"
                   data-dismiss="modal"
-                  onClick={() => setRazonLlamada(reclamo.razonLlamada)}
+                  onClick={() => setDescripcionSolucion("")}
                 >
                   &times;
                 </button>
@@ -48,7 +59,7 @@ function FinalizarReclamoModal({ reclamo }) {
                     className="form-control"
                     id="inputTecnico"
                     disabled
-                    value={6969}
+                    value={reclamo.tecnico_id}
                   />
                 </div>
                 <div className="form-group">
@@ -60,8 +71,8 @@ function FinalizarReclamoModal({ reclamo }) {
                     id="inputEstadoProducto"
                     rows="5"
                     style={{ resize: "none" }}
-                    value={razonLlamada}
-                    onChange={(e) => setRazonLlamada(e.target.value)}
+                    value={descripcionSolucion}
+                    onChange={(e) => setDescripcionSolucion(e.target.value)}
                   ></textarea>
                 </div>
               </div>
@@ -71,7 +82,7 @@ function FinalizarReclamoModal({ reclamo }) {
                   type="button"
                   className="btn btn-success"
                   data-dismiss="modal"
-                  onClick={(e) => repararReclamo(e, reclamo.reclamoID)}
+                  onClick={(e) => finalizarReclamo(e)}
                 >
                   Finalizar
                 </button>
@@ -79,7 +90,7 @@ function FinalizarReclamoModal({ reclamo }) {
                   type="button"
                   className="btn btn-primary"
                   data-dismiss="modal"
-                  onClick={() => setRazonLlamada(reclamo.razonLlamada)}
+                  onClick={() => setDescripcionSolucion("")}
                 >
                   Cerrar
                 </button>

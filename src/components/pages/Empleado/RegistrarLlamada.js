@@ -122,7 +122,6 @@ function RegistrarLlamada() {
             dni_empleado: 41499363,
           },
         };
-
         //console.log(data);
         axios
           .post(`http://localhost:3001/api/reclamos/derivados`, data)
@@ -162,19 +161,35 @@ function RegistrarLlamada() {
       ) {
         window.alert("Datos incompletos");
       } else {
-        const data = {
-          DNI,
-          razonLlamada,
-          // fecha, genera fecha de derivacion
-          estado: "PENDIENTE",
-          // DNI_Empleado, Este es el DNI del Empleado que toma la llamada, va a ser uno por default por que no tenemos Login
-          productoSerie,
-          // CUIT, Este es el cuit del Empresa_Tecnico
+        const data1 = {
+          persona: {
+            dni: DNI,
+            nombre: nombre,
+            apellido: apellido,
+            telefono: telefono,
+            direccion: direccion,
+            ciudad: ciudad,
+          },
+          reclamo: {
+            razon: razonLlamada,
+            fecha_ingreso: moment().format("YYYY-MM-DD"),
+            dni_empleado: 41499363,
+            numero_serie: productoSerie,
+            numero_factura_final: facturaNumero,
+            cuit_empresa_tecnico: tecnicoExterno,
+          },
         };
-        console.log(
-          "Datos completos, mandar datos al backend de reclamo estado SOLUCIONADO"
-        );
-        console.log(data);
+
+        // axios
+        // .post(`http://localhost:3001/api/reclamos/derivados`, data)
+        // .then((res) => {
+        //   console.log(res);
+        // })
+        // .catch((err) => {
+        //   console.error(err);
+        // });
+
+        //console.log(data);
         setNombre("");
         setApellido("");
         setTelefono("");
@@ -188,6 +203,7 @@ function RegistrarLlamada() {
         setCiudad("");
         setDireccion("");
         setTecnicoExterno("");
+
         window.alert("Reclamo generado!");
       }
     }
@@ -216,7 +232,7 @@ function RegistrarLlamada() {
     axios
       .get(`http://localhost:3001/api/tecnicosexternos/${ciudadSeleccionada}`)
       .then((res) => {
-        //console.log(res.data.payload);
+        console.log(res.data.payload);
         setTecnicoExternoData(res.data.payload);
       })
       .catch((err) => {
@@ -417,7 +433,7 @@ function RegistrarLlamada() {
                 </option>
 
                 {tecnicoExternoData.map((item) => (
-                  <option key={item.id} value={item.id}>
+                  <option key={item.cuit} value={item.cuit}>
                     {item.nombre} - {item.direccion} - {item.Ciudad},{" "}
                     {item.provincia} - Gestionando:
                   </option>
@@ -570,7 +586,7 @@ function RegistrarLlamada() {
       </div>
 
       {/* Test de datos */}
-      {/* <pre>{JSON.stringify(data, null, 2)}</pre> */}
+      <pre>{JSON.stringify(data, null, 2)}</pre>
     </div>
   );
   //#endregion

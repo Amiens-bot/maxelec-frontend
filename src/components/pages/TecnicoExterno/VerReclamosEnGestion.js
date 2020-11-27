@@ -73,7 +73,7 @@ function VerReclamosEnGestion() {
                   <td>{item.telefono}</td>
                   <td>{item.fecha_reclamo}</td>
                   <td>
-                    <DetalleReclamoModal reclamo={item} />
+                    <DetalleReclamoModal reclamo={item} detalleGestion={true} />
                   </td>
                   <td>
                     <EditarReclamoModal reclamo={item} />

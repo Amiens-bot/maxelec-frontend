@@ -1,14 +1,38 @@
 import React, { useState } from "react";
+import axios from "axios";
 
 function RepararReclamoModal({ reclamo }) {
   const [descripcionRecivido, setDescripcionRecivido] = useState("");
+  const [tecnicosExternos, setTecnicosExternos] = useState([]);
+  const [tecnico, setTecnico] = useState();
 
-  const repararReclamo = (e, id) => {
-    e.preventDefault();
-    console.log(id);
+  const conseguirTecncios = (cuit) => {
+    //30610252334
+    axios
+      .get(`http://localhost:3001/api/tecnicosexternos/empresa/30610252334`)
+      .then((res) => {
+        console.log(res.data.payload);
+        setTecnicosExternos(res.data.payload);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
+  const repararReclamo = (e) => {
+    axios
+      .post(
+        `http://localhost:3001/api/reclamos/reparar?ticket_id=${reclamo.ticket_id}&dni_tecnico_externo=${tecnico}&descripcion_recibo=${descripcionRecivido}`
+      )
+      .then((res) => {
+        console.log(res.data.payload);
+        //setTecnicosExternos(res.data.payload);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
     // acutaliza la pantalla
-    //window.location = "/tecnico/rependientes";
+    window.location = "/tecnico/rependientes";
   };
   return (
     <div>
@@ -19,6 +43,7 @@ function RepararReclamoModal({ reclamo }) {
           data-toggle="modal"
           data-target={`#modalReparar-id${reclamo.ticket_id}`}
           data-backdrop="static"
+          onClick={conseguirTecncios}
         >
           Reparar{/* <i className="fas fa-wrench"></i> */}
         </button>
@@ -46,13 +71,17 @@ function RepararReclamoModal({ reclamo }) {
                   <select
                     id="inputTecnico"
                     className="form-control"
-                    // vale={provincia}
-                    // onChange={(e) => setProvincia(e.target.value)}
+                    value={tecnico}
+                    onChange={(e) => setTecnico(e.target.value)}
                   >
-                    <option>2131</option>
-                    <option>4135</option>
-                    <option>2591</option>
-                    <option>6969</option>
+                    <option selected disabled value="">
+                      Elegir Tecnico
+                    </option>
+                    {tecnicosExternos.map((item) => (
+                      <option key={item.dni} value={item.dni}>
+                        {item.id}
+                      </option>
+                    ))}
                   </select>
                 </div>
                 <div className="form-group">

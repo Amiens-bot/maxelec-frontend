@@ -15,7 +15,7 @@ function VerReclamosPendientes() {
     axios
       .get(`http://localhost:3001/api/reclamos/pendientes/30610252334`)
       .then((res) => {
-        console.log(res.data.payload);
+        //console.log(res.data.payload);
         setReclamosPendientes(res.data.payload);
       })
       .catch((err) => {

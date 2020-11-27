@@ -1,6 +1,20 @@
 import React, { useState } from "react";
 
-function DetalleReclamoModal({ reclamo }) {
+function DetalleReclamoModal({ reclamo, detalleGestion }) {
+  let formSolucionado = null;
+
+  if (detalleGestion === true) {
+    formSolucionado = (
+      <div>
+        <hr />
+        <h5>DETALLES PRE-SERVICE</h5>
+        <ul className="list-group mb-3">
+          <li className="list-group-item">{reclamo.descripcion_recibido}</li>
+        </ul>
+      </div>
+    );
+  }
+
   return (
     <div>
       <div className="text-dark">
@@ -79,6 +93,7 @@ function DetalleReclamoModal({ reclamo }) {
                 <ul className="list-group mb-3">
                   <li className="list-group-item">{reclamo.razon}</li>
                 </ul>
+                {formSolucionado}
               </div>
 
               <div className="modal-footer">
