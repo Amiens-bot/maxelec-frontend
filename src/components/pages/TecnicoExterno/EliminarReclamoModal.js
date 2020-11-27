@@ -1,9 +1,7 @@
 import React, { useState } from "react";
 
 function EliminarReclamoModal({ reclamo, disabled }) {
-  const [descripcionEliminacion, setdescripcionEliminacion] = useState(
-    reclamo.DescripcionEliminacion
-  );
+  const [descripcionEliminacion, setdescripcionEliminacion] = useState("");
 
   const eliminarReclamo = (e, id) => {
     e.preventDefault();
@@ -20,27 +18,25 @@ function EliminarReclamoModal({ reclamo, disabled }) {
           type="button"
           className="btn btn-danger"
           data-toggle="modal"
-          data-target={`#modalEliminar-id${reclamo.reclamoID}`}
+          data-target={`#modalEliminar-id${reclamo.ticket_id}`}
           disabled={disabled}
           data-backdrop="static"
         >
           Eliminar
         </button>
 
-        <div className="modal" id={`modalEliminar-id${reclamo.reclamoID}`}>
+        <div className="modal" id={`modalEliminar-id${reclamo.ticket_id}`}>
           <div className="modal-dialog">
             <div className="modal-content">
               <div className="modal-header">
                 <h4 className="modal-title">
-                  Eliminar Reclamo - {reclamo.reclamoID}
+                  Eliminar Reclamo - {reclamo.ticket_id}
                 </h4>
                 <button
                   type="button"
                   className="close"
                   data-dismiss="modal"
-                  onClick={() =>
-                    setdescripcionEliminacion(reclamo.DescripcionEliminacion)
-                  }
+                  onClick={() => setdescripcionEliminacion("")}
                 >
                   &times;
                 </button>
@@ -67,7 +63,7 @@ function EliminarReclamoModal({ reclamo, disabled }) {
                   type="button"
                   className="btn btn-danger"
                   data-dismiss="modal"
-                  onClick={(e) => eliminarReclamo(e, reclamo.reclamoID)}
+                  onClick={(e) => eliminarReclamo(e)}
                 >
                   Eliminar
                 </button>
@@ -75,9 +71,7 @@ function EliminarReclamoModal({ reclamo, disabled }) {
                   type="button"
                   className="btn btn-primary"
                   data-dismiss="modal"
-                  onClick={() =>
-                    setdescripcionEliminacion(reclamo.DescripcionEliminacion)
-                  }
+                  onClick={() => setdescripcionEliminacion("")}
                 >
                   Cerrar
                 </button>

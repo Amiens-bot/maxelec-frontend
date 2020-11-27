@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 const EditarReclamoModal = ({ reclamo }) => {
-  const [razonLlamada, setRazonLlamada] = useState(reclamo.razonLlamada);
+  const [razonLlamada, setRazonLlamada] = useState(reclamo.razon);
 
   const updateRazonLlamada = (e) => {
     e.preventDefault();
@@ -15,22 +15,24 @@ const EditarReclamoModal = ({ reclamo }) => {
           type="button"
           className="btn btn-primary"
           data-toggle="modal"
-          data-target={`#modalEditar-id${reclamo.reclamoID}`}
+          data-target={`#modalEditar-id${reclamo.ticket_id}`}
           data-backdrop="static"
         >
           Editar
         </button>
 
-        <div className="modal" id={`modalEditar-id${reclamo.reclamoID}`}>
+        <div className="modal" id={`modalEditar-id${reclamo.ticket_id}`}>
           <div className="modal-dialog">
             <div className="modal-content">
               <div className="modal-header">
-                <h4 className="modal-title">Editar Reclamo</h4>
+                <h4 className="modal-title">
+                  Editar Reclamo - {reclamo.ticket_id}
+                </h4>
                 <button
                   type="button"
                   className="close"
                   data-dismiss="modal"
-                  onClick={() => setRazonLlamada(reclamo.razonLlamada)}
+                  onClick={() => setRazonLlamada(reclamo.razon)}
                 >
                   &times;
                 </button>
@@ -65,7 +67,7 @@ const EditarReclamoModal = ({ reclamo }) => {
                   type="button"
                   className="btn btn-primary"
                   data-dismiss="modal"
-                  onClick={() => setRazonLlamada(reclamo.razonLlamada)}
+                  onClick={() => setRazonLlamada(reclamo.razon)}
                 >
                   Cerrar
                 </button>

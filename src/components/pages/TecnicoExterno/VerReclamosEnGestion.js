@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import moment from "moment";
 import MyNavbar from "../../Navbar/MyNavbar";
 import BackgroundImage from "../../../images/19089.jpg";
 import EditarReclamoModal from "./EditarReclamoModal";
@@ -71,7 +72,7 @@ function VerReclamosEnGestion() {
                   <td>{item.dni}</td>
                   <td>{item.nombre}</td>
                   <td>{item.telefono}</td>
-                  <td>{item.fecha_reclamo}</td>
+                  <td>{moment(item.fecha_reclamo).format("DD-MM-YYYY")}</td>
                   <td>
                     <DetalleReclamoModal reclamo={item} detalleGestion={true} />
                   </td>

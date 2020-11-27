@@ -23,7 +23,7 @@ function RegistrarLlamada() {
   const [lugarCompra, setLugarCompra] = useState("");
   const [facturaFinalFecha, setFacturaFinalFecha] = useState("");
 
-  const [clientOverview, setClientOverview] = useState([]);
+  const [clientOverview, setClientOverview] = useState("");
 
   // ciudad-provincias
   const [provincia, setProvincia] = useState("");
@@ -71,7 +71,7 @@ function RegistrarLlamada() {
         `http://localhost:3001/api/reclamos/clienteoverview?numero_serie=${productoSerie}&numero_factura=${facturaNumero}`
       )
       .then((res) => {
-        console.log(res.data.payload[0]);
+        //console.log(res.data.payload[0]);
 
         // 210 000003
         // 410 000007
@@ -83,8 +83,8 @@ function RegistrarLlamada() {
         setGarantia(
           res.data.payload[0].garantiaexpirada === true ? "No" : "Si"
         );
-        //setClientOverview(res.data.payload[0]);
-        //console.log("cliente" + clientOverview);
+        // setClientOverview(res.data.payload[0].ciudad);
+        // console.log(clientOverview);
       })
       .catch((err) => {
         console.error(err);
@@ -325,7 +325,7 @@ function RegistrarLlamada() {
 
             {/* INPUT - Fecha */}
             <div className="form-group col-md-1">
-              <label htmlFor="inputFechaFactura">Fecha</label>
+              <label htmlFor="inputFechaFactura">Fecha - Factura</label>
               <input
                 type="text"
                 className="form-control"

@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import moment from "moment";
 
 function DetalleReclamoModal({ reclamo, detalleGestion }) {
   let formSolucionado = null;
@@ -77,7 +78,8 @@ function DetalleReclamoModal({ reclamo, detalleGestion }) {
                     <b>CUIT:</b> {reclamo.cuit_dist}
                   </li>
                   <li className="list-group-item">
-                    <b>Fecha de Compra:</b> {reclamo.fecha_expedicion}
+                    <b>Fecha de Compra:</b>{" "}
+                    {moment(reclamo.fecha_expedicion).format("DD-MM-YYYY")}
                   </li>
                   <li className="list-group-item">
                     <b>Nro Factura:</b> {reclamo.numero_factura}
